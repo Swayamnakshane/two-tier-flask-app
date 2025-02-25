@@ -30,7 +30,7 @@ pipeline{
                 sh "docker compose up -d --build"
             }
         }
-post{
+Post{
     success{
         script{
              emailext (
