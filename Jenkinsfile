@@ -30,6 +30,7 @@ pipeline{
                 sh "docker compose up -d --build"
             }
         }
+    }
 post {
     success {
         script {
@@ -50,6 +51,4 @@ post {
         }
     }
 }
-
-    }
 }
