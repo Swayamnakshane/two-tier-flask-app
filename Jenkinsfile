@@ -32,27 +32,18 @@ pipeline{
         }
 Post{
     success{
-        script{
-             emailext (
-                    from: 'swayamvictus1803@gmail.com',
-                    subject: "build successfull",
-                    body: "good news build is successfull",
-                    to: 'swayamvictus1803@gmail.com'
-                  )
-           }
-               
+        emailext 
+        subject: "build success"
+        body: "good news"
+        to: 'swayamvictus1803@gmail.com'
+                                }
+                     }
+    failure{
+         emailext 
+        subject: "build faild"
+        body: "bad news"
+        to: 'swayamvictus1803@gmail.com'
     }
-     failure{
-         script{
-             emailext (
-                    from: 'swayamvictus1803@gmail.com',
-                    subject: "build faild",
-                    body: "bad news build is successfull",
-                    to: 'swayamvictus1803@gmail.com'
-                   )
-                }
-                 
-            }
-        }
+
     }
 }
