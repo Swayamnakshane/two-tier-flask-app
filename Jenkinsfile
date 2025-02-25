@@ -20,14 +20,32 @@ pipeline{
                 )]){
                 
                 sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass}"
-                sh "docker tag chatapp ${env.dockerHubUser}/chatapp"
-                sh "docker push ${env.dockerHubUser}/chatapp:latest"
+                sh "docker tag flaskapp ${env.dockerHubUser}/flaskapp"
+                sh "docker push ${env.dockerHubUser}/flaskapp:latest"
                 }
             }
         }
         stage("deploy"){
             steps {
-                sh "docker compose up -d"
+                sh "docker compose up -d --build"
+            }
+        }
+        post{
+            success{
+                emailext (
+                    from: 'swayamvictus1803@gmail.com',
+                    subject: "build successfull",
+                    body: "good news build is successfull",
+                    to: 'swayamvictus1803@gmail.com'
+                )
+            }
+            failure{
+                 emailext (
+                    from: 'swayamvictus1803@gmail.com',
+                    subject: "build faild",
+                    body: "bad news build is successfull",
+                    to: 'swayamvictus1803@gmail.com'
+                )
             }
         }
     }
