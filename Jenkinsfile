@@ -32,17 +32,19 @@ pipeline{
         }
 Post{
     success{
-        emailext 
+        emailext( 
         subject: "build success"
         body: "good news"
         to: 'swayamvictus1803@gmail.com'
+            )
                                 }
                      }
     failure{
-         emailext 
+         emailext( 
         subject: "build faild"
         body: "bad news"
         to: 'swayamvictus1803@gmail.com'
+             )
     }
 
     }
