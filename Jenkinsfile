@@ -30,22 +30,28 @@ pipeline{
                 sh "docker compose up -d --build"
             }
         }
-        post{
-            success{
-                emailext (
+post{
+    success{
+        script{
+             emailext (
                     from: 'swayamvictus1803@gmail.com',
                     subject: "build successfull",
                     body: "good news build is successfull",
                     to: 'swayamvictus1803@gmail.com'
-                )
-            }
-            failure{
-                 emailext (
+                  )
+           }
+               
+    }
+     failure{
+         script{
+             emailext (
                     from: 'swayamvictus1803@gmail.com',
                     subject: "build faild",
                     body: "bad news build is successfull",
                     to: 'swayamvictus1803@gmail.com'
-                )
+                   )
+                }
+                 
             }
         }
     }
